@@ -1,0 +1,26 @@
+# 革兰染色涂片检测数据集配置（YOLO格式）
+# 目录结构示例：
+#   gram_dataset/
+#     data.yaml          <- 本文件
+#     images/train/      <- 训练集图像（.jpg/.png）
+#     images/val/        <- 验证集图像（建议占总量15~20%）
+#     labels/train/      <- 训练集标注（.txt，与图像同名）
+#     labels/val/        <- 验证集标注
+#
+# 每个标注txt每行一个目标： class_id center_x center_y width height
+# （坐标均为0~1归一化值，LabelImg选YOLO格式导出即为此格式）
+
+path: ./                # 数据集根目录（本文件所在目录）
+train: images/train
+val: images/val
+
+# 类别顺序绝对不能改动！与 gram_analyzer.py 的 MODEL_CLASS_MAP 一一对应
+names:
+  0: gram_pos_coccus        # 革兰阳性球菌（紫，圆）
+  1: gram_neg_coccus        # 革兰阴性球菌（粉红，圆）
+  2: gram_pos_bacillus      # 革兰阳性杆菌（紫，杆状）
+  3: gram_neg_bacillus      # 革兰阴性杆菌（粉红，杆状）
+  4: fungal_spore           # 真菌孢子/酵母样孢子
+  5: fungal_hypha           # 真菌菌丝/假菌丝（整条用一个长框）
+  6: leukocyte              # 白细胞（中性粒细胞为主）
+  7: squamous_cell          # 鳞状上皮细胞/其他宿主细胞
